@@ -1,0 +1,7 @@
+{
+  "name": "contacts-poc",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
