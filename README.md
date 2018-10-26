@@ -9,3 +9,5 @@ Issues found:
 2) iOS is updating an existing contact in the mobile contacts which has the same name and surname even though the operation was to create a new contact on the API. It appears to be an iOS behaviour.
 
 3) There is no way to remove a phone number, email or address on an existing device contact. The workaround seems to be cloning the existing contact and saving the new one with the updated information.
+
+4) There are some apps that creates entries on the Instant Messaging (IM) fields (CamCard app, for instance). When clicking on the field, CamCard app opens as it would work when implementing app depp linking. Could't implement the same behaviour using Cordova Contacts and Cordova Deeplinks.
