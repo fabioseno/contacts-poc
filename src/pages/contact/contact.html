@@ -1,17 +1,113 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ contact.name }}</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="updateContact()">Done</button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
-
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+    <form #contactForm="ngForm" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>Name</ion-label>
+                <ion-input type="text" name="name" required [(ngModel)]="contact.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Title</ion-label>
+                <ion-input type="text" name="title" [(ngModel)]="contact.title"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Location</ion-label>
+                <ion-input type="text" name="location" [(ngModel)]="contact.location"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Birthday</ion-label>
+                <ion-datetime type="text" name="birthday" [(ngModel)]="contact.birthday" displayFormat="D MMM YYYY"></ion-datetime>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-list-header>
+                Phones
+            </ion-list-header>
+            <ion-item *ngFor="let phone of contact.phones; let i = index">
+                <ion-input type="tel" name="phone{{ i }}" [(ngModel)]="phone.value"></ion-input>
+                <button ion-button clear item-start>
+                    <ion-icon class="action-icon action-danger" (click)="removeInfo('phones', phone)">
+                        Remove
+                    </ion-icon>
+                </button>
+            </ion-item>
+            <ion-item class="contact-item-add item-success" (click)="addInfo('phones', 'mobile');">
+                <ion-icon class="action-icon action-success" item-start>
+                    <i class="mdi mdi-plus"></i>
+                </ion-icon>
+                <span>Add</span>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-list-header>
+                E-mails
+            </ion-list-header>
+            <ion-item *ngFor="let email of contact.emails; let i = index">
+                <ion-input type="email" name="email{{ i }}" [(ngModel)]="email.value"></ion-input>
+                <button ion-button clear item-start>
+                    <ion-icon class="action-icon action-danger" (click)="removeInfo('emails', email)">
+                        Remove
+                    </ion-icon>
+                </button>
+            </ion-item>
+            <ion-item class="contact-item-add item-success" (click)="addInfo('emails');">
+                <ion-icon class="action-icon action-success" item-start>
+                    <i class="mdi mdi-plus"></i>
+                </ion-icon>
+                <span>Add</span>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-list-header>
+                Addresses
+            </ion-list-header>
+            <ng-container *ngFor="let address of contact.addresses; let i = index">
+                <ion-item>
+                     <ion-input type="text" name="addressLine1{{ i }}" placeholder="Street" required [(ngModel)]="address.line1"></ion-input>
+                    <button ion-button clear item-start>
+                        <ion-icon class="action-icon action-danger" (click)="removeInfo('addresses', address)">
+                            Remove
+                        </ion-icon>
+                    </button>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>&nbsp;</ion-label>
+                    <ion-input type="text" name="addressLine2{{ i }}" placeholder="Street" [(ngModel)]="address.line2"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>&nbsp;</ion-label>
+                    <ion-input type="text" name="addressNeighbourhood{{ i }}" placeholder="Neighbourhood" [(ngModel)]="address.neighbourhood"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>&nbsp;</ion-label>
+                    <ion-input type="text" name="addressCity{{ i }}" placeholder="City" [(ngModel)]="address.city"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>&nbsp;</ion-label>
+                    <ion-input type="text" name="addressState{{ i }}" placeholder="State" [(ngModel)]="address.state"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>&nbsp;</ion-label>
+                    <ion-input type="text" name="addressPostalCode{{ i }}" placeholder="Postal code" [(ngModel)]="address.postalCode"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>&nbsp;</ion-label>
+                    <ion-input type="text" name="addressCountry{{ i }}" placeholder="Country" [(ngModel)]="address.country"></ion-input>
+                </ion-item>
+            </ng-container>
+            <ion-item class="contact-item-add item-success" (click)="addInfo('addresses');">
+                <ion-icon class="action-icon action-success" item-start>
+                    <i class="mdi mdi-plus"></i>
+                </ion-icon>
+                <span>Add</span>
+            </ion-item>
+        </ion-list>
+    </form>
 </ion-content>
